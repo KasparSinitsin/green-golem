@@ -1,0 +1,63 @@
+.eye-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.eye {
+  width: 325px; 
+  height: 185px;
+  background-image: url('../assets/eye.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative; 
+}
+
+.pupil {
+  width: 120px;
+  height: 120px; 
+  background-color: transparent;
+  background-image: url('../assets/iris-texture.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  position: absolute;
+  top: calc(50% - 45px); 
+  left: calc(50% - 45px); 
+  transition: transform 0.1s ease-out;
+  z-index: 1; 
+}
+
+.inner-pupil {
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.band-logo {
+  margin-top: 50px;
+  width: 100px;
+  height: auto;  
+  transition: filter 0.3s, color 0.3s;
+  cursor: pointer;
+}
+
+.band-logo.hovered {
+  filter: none; 
+  color: black; 
+  fill: black; 
+}
