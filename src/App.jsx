@@ -11,10 +11,8 @@ import logo2 from './assets/logo2.svg';
 import grumbleSound from './assets/grumble.wav';
 
 const App = () => {
-  const [bandModalOpen, setBandModalOpen] = useState(false);
-  const [tourModalOpen, setTourModalOpen] = useState(false);
-  const [albumsModalOpen, setAlbumsModalOpen] = useState(false);
-  const [merchModalOpen, setMerchModalOpen] = useState(false);
+  const [leftModal, setLeftModal] = useState(null);
+  const [rightModal, setRightModal] = useState(null);
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
 
   const handleLogoClick = () => {
@@ -26,10 +24,10 @@ const App = () => {
     <div className="relative">
       {/* Desktop Navbar */}
       <div className="navbar hidden sm:flex">
-        <button onClick={() => setBandModalOpen(true)}>The Band</button>
-        <button onClick={() => setTourModalOpen(true)}>Tour Dates</button>
-        <button onClick={() => setAlbumsModalOpen(true)}>Albums</button>
-        <button onClick={() => setMerchModalOpen(true)}>Merch</button>
+        <button onClick={() => setLeftModal('band')}>The Band</button>
+        <button onClick={() => setLeftModal('tour')}>Tour Dates</button>
+        <button onClick={() => setRightModal('albums')}>Albums</button>
+        <button onClick={() => setRightModal('merch')}>Merch</button>
       </div>
 
       {/* Mobile Hamburger Menu */}
@@ -42,10 +40,10 @@ const App = () => {
       {/* Mobile Menu Items */}
       {hamburgerOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-70 z-40 flex flex-col items-start p-4 sm:hidden">
-          <button className="block w-full text-left mt-12 p-2 text-xl text-[#B0B270]" onClick={() => { setBandModalOpen(true); setHamburgerOpen(false); }}>The Band</button>
-          <button className="block w-full text-left p-2 text-xl text-[#B0B270]" onClick={() => { setTourModalOpen(true); setHamburgerOpen(false); }}>Tour Dates</button>
-          <button className="block w-full text-left p-2 text-xl text-[#B0B270]" onClick={() => { setAlbumsModalOpen(true); setHamburgerOpen(false); }}>Albums</button>
-          <button className="block w-full text-left p-2 text-xl text-[#B0B270]" onClick={() => { setMerchModalOpen(true); setHamburgerOpen(false); }}>Merch</button>
+          <button className="block w-full text-left mt-12 p-2 text-xl text-[#B0B270]" onClick={() => { setLeftModal('band'); setHamburgerOpen(false); }}>The Band</button>
+          <button className="block w-full text-left p-2 text-xl text-[#B0B270]" onClick={() => { setLeftModal('tour'); setHamburgerOpen(false); }}>Tour Dates</button>
+          <button className="block w-full text-left p-2 text-xl text-[#B0B270]" onClick={() => { setRightModal('albums'); setHamburgerOpen(false); }}>Albums</button>
+          <button className="block w-full text-left p-2 text-xl text-[#B0B270]" onClick={() => { setRightModal('merch'); setHamburgerOpen(false); }}>Merch</button>
         </div>
       )}
 
@@ -66,10 +64,11 @@ const App = () => {
         />
       </div>
 
-      <BandModal isOpen={bandModalOpen} onClose={() => setBandModalOpen(false)} />
-      <TourModal isOpen={tourModalOpen} onClose={() => setTourModalOpen(false)} />
-      <AlbumsModal isOpen={albumsModalOpen} onClose={() => setAlbumsModalOpen(false)} />
-      <MerchModal isOpen={merchModalOpen} onClose={() => setMerchModalOpen(false)} />
+      {/* Modals */}
+      <BandModal isOpen={leftModal === 'band'} onClose={() => setLeftModal(null)} />
+      <TourModal isOpen={leftModal === 'tour'} onClose={() => setLeftModal(null)} />
+      <AlbumsModal isOpen={rightModal === 'albums'} onClose={() => setRightModal(null)} />
+      <MerchModal isOpen={rightModal === 'merch'} onClose={() => setRightModal(null)} />
     </div>
   );
 };

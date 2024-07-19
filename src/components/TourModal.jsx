@@ -5,12 +5,9 @@ const TourModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-start pt-[85px]">
-      <div className="relative w-1/3 h-full p-6 overflow-y-auto bg-black bg-opacity-70 text-[#B0B270] shadow-lg">
-        <div 
-          className="absolute top-2 right-2 cursor-pointer text-[#B0B270] text-2xl" 
-          onClick={onClose}
-        >
+    <div className="fixed inset-0 z-30 flex items-start justify-start pt-[85px]">
+      <div className="relative w-full lg:w-1/3 md:w-1/2 h-full p-6 overflow-y-auto bg-black bg-opacity-70 text-[#B0B270] shadow-lg">
+        <div className="absolute top-2 right-2 cursor-pointer text-[#B0B270] text-2xl" onClick={onClose}>
           &times;
         </div>
         <h2 className="mb-4 text-2xl font-bold">Tour Dates</h2>
